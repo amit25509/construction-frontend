@@ -1,0 +1,201 @@
+<div *ngIf="dataSource.data.length === 0" class="text text-center content-holder">
+    <h1>No Records Found</h1>
+</div>
+
+<div [hidden]="!dataSource.data">
+
+    <div class="mat-elevation-z8" class="table-box content-holder">
+        <input type="text" class="filter-box " placeholder="Search.." name="search2" (keyup)="applyFilter($event.target.value)" matInput>
+        <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+
+            <ng-container matColumnDef="bookingId">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> ID</th>
+                <td mat-cell *matCellDef="let element" (click)="expandedElement = expandedElement === element ? null : element">
+                    {{element.bookingId}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="bookingFrom">
+                <th mat-header-cell *matHeaderCellDef> FROM </th>
+                <td mat-cell *matCellDef="let element" (click)="expandedElement = expandedElement === element ? null : element">
+                    {{element.bookingFrom | date}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="bookingTo">
+                <th mat-header-cell *matHeaderCellDef> TO </th>
+                <td mat-cell *matCellDef="let element" (click)="expandedElement = expandedElement === element ? null : element"> {{element.bookingTo | date}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="daysWorked">
+                <th mat-header-cell *matHeaderCellDef> DAYS WORKED </th>
+                <td mat-cell *matCellDef="let element" (click)="expandedElement = expandedElement === element ? null : element">
+                    {{element.daysWorked}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="rating">
+                <th mat-header-cell *matHeaderCellDef> RATING </th>
+                <td mat-cell *matCellDef="let element" (click)="expandedElement = expandedElement === element ? null : element"> {{element.rating}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> STATUS </th>
+                <td mat-cell *matCellDef="let element" (click)="expandedElement = expandedElement === element ? null : element">
+                    {{element.status}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="user">
+                <th mat-header-cell *matHeaderCellDef> USER </th>
+                <td mat-cell *matCellDef="let element" (click)="expandedElement = expandedElement === element ? null : element">
+                    {{element.user.phone}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="employee">
+                <th mat-header-cell *matHeaderCellDef> EMPLOYEE </th>
+                <td mat-cell *matCellDef="let element" (click)="expandedElement = expandedElement === element ? null : element"> {{element.employee.phone}}
+                </td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="isEnabled">
+              <th mat-header-cell *matHeaderCellDef> ENABLED </th>
+              <td mat-cell *matCellDef="let element">
+                  <span class="onoffswitch">
+                      <input type="checkbox" name="isEnabled"
+                          (click)="userEnableDisable(element.id,element.isEnabled)" class="onoffswitch-checkbox"
+                          id="myonoffswitch" [(ngModel)]="element.isEnabled">
+                      <label class="onoffswitch-label" for="myonoffswitch">
+                          <span class="onoffswitch-inner"></span>
+                          <span class="onoffswitch-switch"></span>
+                      </label>
+                  </span>
+              </td>
+          </ng-container> -->
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element" class="action-link">
+                    <a data-toggle="modal" data-target="#exampleModal" (click)="setViewedBooking(element.bookingId)"><i
+                          class="fa fa-pencil fa-lg" aria-hidden="true"></i></a> &nbsp;&nbsp;
+                    <!-- <a (click)="userDelete(element.id)"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a> -->
+                </td>
+            </ng-container>
+
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                    <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                        <div class="example-element-diagram">
+                            <div class="example-element-position">
+                                <h6> EMPLOYEE</h6>
+                            </div>
+                            <div class="example-element-symbol">
+                                {{element.employee.phone}}</div>
+                            <!-- <div class="example-element-name">
+                                {{element.employee.name}}</div> -->
+                        </div>
+                        <div class="example-element-description">
+                            <h6> Days Worked:</h6>
+                            <hr>{{element.daysWorked}}
+                        </div>
+                        <div class="example-element-description">
+                            <h6>From Date:</h6>
+                            <hr>{{element.bookingFrom}}
+                        </div>
+                        <div class="example-element-description">
+                            <h6>To Date:</h6>
+                            <hr>{{element.bookingTo}}
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+
+            <!-- <tr mat-row (click)="logData(row)" *matRowDef="let row; columns: columnsToDisplay;"></tr> -->
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row" [class.example-expanded-row]="expandedElement === element">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+        </table>
+
+        <mat-paginator class="paginator--centered" [pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
+    </div>
+
+</div>
+
+<!-- POP UP START -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Booking Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                              </button>
+            </div>
+            <form method="post" #userForm="ngForm" novalidate (ngSubmit)="updateBooking()">
+                <div class="modal-body">
+                    <div id="profile" role="tabpanel" aria-labelledby="profile-tab" *ngFor="let item of allBookings">
+                        <div *ngIf="item.bookingId===viewBookingId">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>From</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><input type="date" [(ngModel)]="item.bookingFrom" name="bookingFrom">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>To</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><input type="date" [(ngModel)]="item.bookingTo" name="bookingTo"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Employee</label>
+                                </div>
+                                <div class="col-md-5 example-form">
+
+                                    <select class="custom-select" type="text" name="employee" [(ngModel)]="item.employee.name">
+                                        <option *ngFor="let item of options" type="number"
+                                            value="{{item}}">
+                                            {{item}}</option>
+                                    </select>
+                                    <!-- MATERIAL SELECT + SEARCH -->
+                                    <!-- <form class="example-form">
+                                    <mat-form-field class="example-full-width style">
+                                        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                                {{option}}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                    </form> -->
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Status</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><input type="text" [(ngModel)]="item.status" name="status"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

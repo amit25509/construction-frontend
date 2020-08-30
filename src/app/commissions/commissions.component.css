@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+  }
+
+  .table-box{
+    width: 80%;
+    align-items: center;
+    margin-left: auto;
+  margin-right: auto;
+  }
+
+
+  .filter-box{
+    margin-top: 30px;
+    /* width: 22em; */
+  }
+
+  .commision-status{
+    display: inline-block;
+    padding: 3px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .total{
+    color: #16ca00;
+    background-color: #424242;
+  }
+  .due{
+    color: #e02b2b;
+    background-color: #424242;
+  }

@@ -1,0 +1,293 @@
+<body class="bg">
+    <br>
+    <div class="container mt-5 background" *ngIf="serviceType">
+
+        <!--Section: Content-->
+        <section class="dark-grey-text">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <!--Grid row-->
+                    <div class="row">
+
+                        <!--Grid column-->
+                        <div class="col-lg-8">
+
+                            <!-- Pills navs -->
+                            <ul class="nav md-pills nav-justified pills-primary font-weight-bold">
+                                <li class="nav-item">
+                                    <a class="nav-link active " data-toggle="tab" href="#tabCheckoutBilling123" role="tab">1.
+                                        Booking Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" (click)="retrieveAllByOccupation()" data-toggle="tab" href="#tabCheckoutAddons123" role="tab">2.
+                                        Select Employee</a>
+                                </li>
+                            </ul>
+
+                            <!-- Pills panels -->
+                            <div class="tab-content pt-4">
+
+                                <!--Panel 1-->
+                                <div class="tab-pane fade in show active" id="tabCheckoutBilling123" role="tabpanel">
+
+                                    <!--Card content-->
+                                    <form [formGroup]="newBookingForm">
+
+                                        {{newBookingForm.value | json}}
+                                        <!--Grid row-->
+                                        <div class="row">
+
+                                            <!--Grid column-->
+                                            <div class="col-md-6 mb-4">
+
+                                                <!--firstName-->
+                                                <label for="firstName">From</label>
+                                                <input type="date" class="form-control" formControlName="bookingFrom">
+
+                                            </div>
+                                            <!--Grid column-->
+
+                                            <!--Grid column-->
+                                            <div class="col-md-6 mb-2">
+
+                                                <!--lastName-->
+                                                <label for="lastName">To</label>
+                                                <input type="date" class="form-control" formControlName="bookingTo">
+
+                                            </div>
+                                            <!--Grid column-->
+
+                                        </div>
+                                        <!--Grid row-->
+                                        <!--address-->
+                                        <label for="address">Additional Details</label>
+                                        <textarea type="text" id="add_details" class="form-control mb-4" placeholder="Extra details related to Service" formControlName="description"></textarea>
+
+                                        <!-- Saved Address -->
+                                        <div *ngIf="address != null && isNewAddHideen">
+                                            <div *ngFor="let item of address">
+                                                <input type="radio" name="address" (click)="setSelectedAddress(item)">{{item.buildingName}}, {{item.street}}, {{item.city}}, {{item.state}}, {{item.postalCode}}
+                                            </div>
+                                            <!-- <input type="radio" [(ngModel)]="isChecked" name="address" value="true">Add new Address
+                                            (click)="setSelectedAddress(item)"  ||[disabled]="isChecked=='true'" -->
+                                        </div>
+
+                                        <button (click)="newAddDisplay()">{{addShowAdd}}</button>
+                                        <!--address-->
+                                        <div formGroupName="address" [hidden]="isNewAddHideen">
+                                            <label for="buildingName">Building Name</label>
+                                            <input type="text" id="address" class="form-control mb-4" placeholder="1234 Main St" formControlName="buildingName">
+
+                                            <!--address-2-->
+                                            <label for="address-2">Street</label>
+                                            <input type="text" id="address-2" class="form-control mb-4" placeholder="Apartment or suite" formControlName="street">
+
+                                            <!--Grid row-->
+                                            <div class="row">
+
+                                                <!--Grid column-->
+                                                <div class="col-lg-4 col-md-12 mb-4">
+
+                                                    <label for="country">City</label>
+                                                    <select class="custom-select d-block w-100" id="city" required formControlName="city">
+                                                        <option value="">Choose...</option>
+                                                        <option>Delhi</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select a valid country.
+                                                    </div>
+
+                                                </div>
+                                                <!--Grid column-->
+
+                                                <!--Grid column-->
+                                                <div class="col-lg-4 col-md-6 mb-4">
+
+                                                    <label for="state">State</label>
+                                                    <select class="custom-select d-block w-100" id="state" required formControlName="state">
+                                                        <option value="">Choose...</option>
+                                                        <option>Delhi</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a valid state.
+                                                    </div>
+
+                                                </div>
+                                                <!--Grid column-->
+
+                                                <!--Grid column-->
+                                                <div class="col-lg-4 col-md-6 mb-4">
+
+                                                    <label for="zip">Postal Code</label>
+                                                    <input type="number" class="form-control" id="zip" placeholder="Zip" formControlName="postalCode">
+                                                    <div class="invalid-feedback">
+                                                        Zip code required.
+                                                    </div>
+
+                                                </div>
+                                                <!--Grid column-->
+
+                                            </div>
+                                        </div>
+                                        <!--Grid row-->
+
+                                        <!-- <hr>
+
+                                        <div class="mb-1">
+                                            <input type="checkbox" class="form-check-input filled-in" id="chekboxRules">
+                                            <label class="form-check-label" for="chekboxRules">I accept the terms and
+                                            conditions</label>
+                                        </div> -->
+
+                                        <hr>
+
+                                        <button class="btn btn-lg btn-block mybutton" (click)="retrieveAllByOccupation()" data-toggle="tab" href="#tabCheckoutAddons123" type="submit">Next step</button>
+
+                                    </form>
+
+                                </div>
+                                <!--/.Panel 1-->
+
+                                <!--Panel 2-->
+                                <div class="tab-pane fade" id="tabCheckoutAddons123" role="tabpanel">
+                                    <div class="overflow-auto" style=" height:60vh; overflow-x: unset;">
+                                        <!--Grid row-->
+                                        <div class="row" *ngFor="let item of allUsers">
+                                            <!-- Card -->
+                                            <!-- <section class="container mt-4 mb-4">
+                                                <div class="container">
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <div class="d-flex flex-row border rounded">
+                                                                <div class="p-0 w-25">
+                                                                    <img src="data:image/png;base64,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" class="img-thumbnail border-0" />
+
+                                                                </div>
+                                                                <div class="pl-3 pt-2 pr-2 pb-2 w-100 border-left">
+                                                                    <h4 class="text-primary">{{item.name}}</h4>
+                                                                    <h5 class="text-info">
+                                                                        {{item.employeeData.occupation.occupationName}}</h5>
+                                                                    <p class="text-right m-0"><a class="btn btn-primary" (click)="setSelectedEmployee(item)"><i
+                                                                            class="far fa-user"></i>Select</a></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </section> -->
+                                            <div class="card" style="width: 100%; height: 30%;">
+                                                <div class="row no-gutters">
+                                                    <div class="p-0 w-25">
+                                                        <img class="card-img" src="data:image/png;base64,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"
+                                                            alt="Suresh Dasari Card">
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">{{item.name}}</h5>
+                                                            <p class="card-text">Suresh Dasari is a founder and technical lead developer in tutlane.</p>
+                                                            <a (click)="setSelectedEmployee(item)" class="btn btn-primary">select</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <!--Grid row-->
+                                    </div>
+                                    <hr class="mb-5">
+
+                                    <button class="btn btn-lg btn-block mybutton" (click)="onSubmit()" type="submit">Confirm Booking</button>
+
+                                </div>
+                                <!--/.Panel 2-->
+
+                            </div>
+                            <!-- Pills panels -->
+
+
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-lg-4 mb-4">
+
+
+                            <!--Card-->
+                            <div class="card z-depth-0 border border-light rounded-0">
+
+                                <!--Card content-->
+                                <div class="card-body">
+                                    <h4 class="mb-4 mt-1 h5 text-center font-weight-bold">Summary</h4>
+
+                                    <hr>
+
+                                    <dl class="row">
+                                        <dd class="col-sm-6">
+                                            Service Type:<br>
+                                        </dd>
+                                        <dd class="col-sm-6">
+                                            {{serviceType}}
+                                        </dd>
+                                    </dl>
+
+                                    <hr>
+
+                                    <dl class="row">
+                                        <dd class="col-sm-8">
+                                            Visiting charge:
+                                        </dd>
+                                        <dd class="col-sm-4">
+                                            Rs. 500
+                                        </dd>
+                                    </dl>
+
+                                    <hr>
+
+                                    <dl class="row">
+                                        <dd class="col-sm-8">
+                                            Additional charge:
+                                        </dd>
+                                        <dd class="col-sm-4">
+                                            0
+                                        </dd>
+                                    </dl>
+
+                                    <hr>
+
+                                    <dl class="row">
+                                        <dt class="col-sm-8">
+                                            Total
+                                        </dt>
+                                        <dt class="col-sm-4">
+                                            Rs. 500
+                                        </dt>
+                                    </dl>
+                                </div>
+
+                                <button (click)="onSubmit()" class="btn btn-lg btn-block mybutton" type="submit">Place
+                                    order</button>
+
+
+                            </div>
+                            <!--/.Card-->
+
+
+
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+                    <!--Grid row-->
+
+                </div>
+            </div>
+
+        </section>
+        <!--Section: Content-->
+    </div>
+    <br>
+</body>

@@ -1,0 +1,142 @@
+<!-- <app-home-nav-bar></app-home-nav-bar> -->
+
+<body class="bg">
+    <div id="login">
+        <div class="container container-style">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+
+                        <form id="login-form" class="form" #userForm="ngForm" novalidate action="" (ngSubmit)="onSubmit()" method="POST">
+                            <h3 class="text-center text-info">Register</h3>
+
+                            <!-- Radio Button -->
+                            <div>
+                                <input name="options" (click)="setTypeUser()" [(ngModel)]="options" type="radio" [value]="false" [checked]="!options" checked /> User
+                                <input name="options" (click)="setTypeEmployee()" [(ngModel)]="options" type="radio" [value]="true" [checked]="options" /> Employee
+                            </div>
+
+                            <!-- {{userForm.value | json}} -->
+
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" [value]="false" [(ngModel)]="userModel.name" name="name" #nameRef #myname="ngModel" required minlength="2" [class.is-invalid]="myname.invalid && myname.touched">
+                                    <div *ngIf="myname.invalid && (myname.dirty || myname.touched)">
+                                        <small class="text-danger" *ngIf="myname.errors.required">Name is
+                                            Required</small>
+                                        <small class="text-danger" *ngIf="myname.errors.minlength">Name must be more
+                                            than charcaters</small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label>Phone</label>
+                                    <input type="number" class="form-control" [(ngModel)]="userModel.phone" name="phone" #phoneRef="ngModel" required [class.is-invalid]="phoneRef.invalid && phoneRef.touched" maxlength="10" minlength="10">
+                                    <div *ngIf="phoneRef.invalid && (phoneRef.touched || phoneRef.dirty)">
+                                        <small class="text-danger" *ngIf="phoneRef.errors.required">Phone Numeber is
+                                            Required</small>
+                                        <small class="text-danger" *ngIf="phoneRef.errors.minlength">Phone number must
+                                            be 10 digits</small>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-8 form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" [(ngModel)]="userModel.email" name="email" required email [class.is-invalid]="emailRef.invalid && emailRef.touched" #emailRef="ngModel">
+                                    <div *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)">
+                                        <small class="text-danger" *ngIf="emailRef.errors.required">Email is
+                                            Required</small>
+                                        <small class="text-danger" *ngIf="emailRef.errors.email">Email is
+                                            Invalid</small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 form-group" ngModelGroup="locationId">
+                                    <label>Location</label>
+                                    <select class="custom-select" type="number" [(ngModel)]="userModel.location.locationId" name="locationId" required #locationRef="ngModel" [class.is-invalid]="locationRef.invalid && locationRef.touched">
+                                        <option disabled>-----Select Location------</option>
+                                        <option *ngFor="let location of allLocations" type="number"
+                                            value="{{location.locationId}}">
+                                            {{location.locationName}}</option>
+                                        <div *ngIf="locationRef.invalid && locationRef.touched">
+                                            <small class="text-danger" *ngIf="locationRef.errors.required">Please Select
+                                                any one of the
+                                                following</small>
+                                        </div>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="userModel.password" name="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" required>
+                                    <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                                        <small class="text-danger" *ngIf="password.errors.required">Password is
+                                            Required</small>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <label for="exampleInputPassword1">Confirm Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="confirm Password" (ngModel)="userModel.password" name="cpassword" [class.is-invalid]="cpassword.invalid && cpassword.touched" #cpassword="ngModel">
+                                    <small class="text-danger" [class.d-none]="(cpassword.value == password.value || cpassword.untouched)">Password
+                                        don't match</small>
+                                </div>
+                            </div>
+
+                            <!-- SHOW-HIDE EMPLOYEE FIELDS -->
+                            <div *ngIf="options">
+
+                                <div class="row">
+
+                                    <!-- <input type="text"  [(ngModel)]="userModel.roles[0]" name="roles" value="emp"> -->
+
+                                    <div class="col-sm-3 form-group">
+                                        <label>Experience</label>
+                                        <input type="number" class="form-control" [(ngModel)]="userModel.employeeData.experience" name="experience">
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label>Occupation</label>
+                                        <select class="custom-select" type="number" [(ngModel)]="userModel.employeeData.occupation.occupationId" name="occupationId" required #occupationRef="ngModel" [class.is-invalid]="occupationRef.invalid && occupationRef.touched">
+                                            <option disabled>Select Occupation</option>
+                                            <option *ngFor="let item of allOccupation" type="number"
+                                                value="{{item.occupationId}}">
+                                                {{item.occupationName}}</option>
+                                            <div *ngIf="occupationRef.invalid && occupationRef.touched">
+                                                <small class="text-danger" *ngIf="occupationRef.errors.required">Please Select any one of the following</small>
+                                            </div>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5 form-group">
+                                        <label>DOB</label>
+                                        <input type="date" class="form-control" [(ngModel)]="userModel.dob" name="dob">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <!-- <label for="remember-me" class="text-info"><span>Remember me</span> <span><input
+                                                id="remember-me" name="remember-me" type="checkbox"></span>
+                                    </label> -->
+                                    <span class="">
+                                        <a [routerLink]="['/login']" routerLinkActive="router-link-active"
+                                            class="text-info text-right mytext">Already a user? Login
+                                            Here</a>
+                                    </span>
+                                    <br>
+                                    <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" [disabled]="!userForm.valid">
+                                </div>
+                                <div class="text-right text-danger myerror" *ngIf="isSignUpFailed">{{errorMessage}}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

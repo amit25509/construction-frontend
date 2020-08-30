@@ -1,0 +1,297 @@
+<!-- COROUSEL STARTS -->
+<header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <!-- Slide One - Set the background image for this slide in the line below -->
+            <div class="carousel-item active" style="background-image: url('/assets/background.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">First Slide</h2>
+                    <p class="lead">This is a description for the first slide.</p>
+                </div>
+            </div>
+            <!-- Slide Two - Set the background image for this slide in the line below -->
+            <div class="carousel-item" style="background-image: url('/assets/background.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">Second Slide</h2>
+                    <p class="lead">This is a description for the second slide.</p>
+                </div>
+            </div>
+            <!-- Slide Three - Set the background image for this slide in the line below -->
+            <div class="carousel-item" style="background-image: url('/assets/background.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">Third Slide</h2>
+                    <p class="lead">This is a description for the third slide.</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</header>
+<!-- COROUSEL ENDS -->
+
+
+
+
+
+<!-- CARDS START -->
+<section id="team" class="pb-5">
+    <div class="container">
+        <h5 class="section-title h1">OUR SERVICES</h5>
+        <div class="row">
+            <!-- Team member -->
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="image-flip">
+                    <div class="mainflip flip-0">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQFiP0hCipjQlKKFKgsPi7xX1gRlrGQSCrQoFaRD1oQng&usqp=CAU&ec=45687376" alt="card image"></p>
+                                    <h4 class="card-title">Electrician</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                    <a class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside" [routerLink]="['/construction/electrician']">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">ELECTRICIAN</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title,
+                                        <a [routerLink]="['/construction/electrician']" routerLinkActive="router-link-active">description and button</a></p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Team member -->
+            <!-- 2ndTeam member -->
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="https://i7.uihere.com/icons/407/165/120/welder-82df841462ce2523cab46cd907e5e2c2.png" alt="card image"></p>
+                                    <h4 class="card-title">Welder</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside" [routerLink]="['/construction/electrician']">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">Welder</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Team member -->
+            <!-- Team member -->
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="https://icon-library.com/images/plumbing-icon/plumbing-icon-22.jpg" alt="card image"></p>
+                                    <h4 class="card-title">Plumber</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                    <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside" [routerLink]="['/construction/electrician']">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">Plumber</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Team member -->
+            <!-- Team member -->
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="https://icon-library.com/images/labor-icon/labor-icon-0.jpg" alt="card image"></p>
+                                    <h4 class="card-title">Labour</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                    <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside" [routerLink]="['/construction/electrician']">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">Labour</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Team member -->
+            <!-- Team member -->
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="data:image/png;base64,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"
+                                            alt="card image"></p>
+                                    <h4 class="card-title">Carpenter</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                    <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside" [routerLink]="['/construction/electrician']">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">Carpenter</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Team member -->
+            <!-- Team member -->
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="https://i7.uihere.com/icons/407/165/120/welder-82df841462ce2523cab46cd907e5e2c2.png" alt="card image"></p>
+                                    <h4 class="card-title">Painter</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                    <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside" [routerLink]="['/construction/electrician']">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">Painter</h4>
+                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Team member -->
+
+        </div>
+    </div>
+</section>
+<!-- Team -->
+<!--CARDS END-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">List</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body" *ngFor="let item of allUsers">
+                <!-- Card -->
+                <section class="container mt-4 mb-4">
+                    <div class="container">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="d-flex flex-row border rounded">
+                                    <div class="p-0 w-25">
+                                        <img src="https://s3.ap-south-1.amazonaws.com/www.pravingururani.com/images/profile.jpg" class="img-thumbnail border-0" />
+
+                                    </div>
+                                    <div class="pl-3 pt-2 pr-2 pb-2 w-100 border-left">
+                                        <h4 class="text-primary">{{item.name}}</h4>
+                                        <h5 class="text-info">{{item.employeeData.occupation.occupationName}}</h5>
+                                        <p class="text-right m-0"><a href="#" class="btn btn-primary"><i class="far fa-user"></i> View
+                        Profile</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL ENDS -->

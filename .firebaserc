@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "my-project-1556705166591": {
+      "hosting": {
+        "const-scss": [
+          "my-project-1556705166591"
+        ]
+      }
+    }
+  }
+}
